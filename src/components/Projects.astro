@@ -1,0 +1,201 @@
+---
+const projects = [
+  {
+    lang: 'Kotlin · Android',
+    emoji: '📱',
+    title: 'App de Gestión',
+    description: 'Aplicación Android para gestión de tareas y proyectos. Arquitectura MVVM, Room para persistencia local y sincronización con API REST.',
+    tags: ['Kotlin', 'MVVM', 'Room', 'Retrofit'],
+    github: 'https://github.com/rodrigo-selva',
+  },
+  {
+    lang: 'Java · Spring Boot',
+    emoji: '⚙️',
+    title: 'API REST Backend',
+    description: 'Backend completo con Spring Boot, autenticación JWT, conexión a base de datos MySQL y documentación con Swagger.',
+    tags: ['Java', 'Spring Boot', 'MySQL', 'JWT'],
+    github: 'https://github.com/rodrigo-selva',
+  },
+  {
+    lang: 'Python',
+    emoji: '🐍',
+    title: 'Automatización & Scripts',
+    description: 'Suite de scripts Python para automatización de tareas, procesamiento de datos y generación de informes automáticos.',
+    tags: ['Python', 'Pandas', 'SQLite'],
+    github: 'https://github.com/rodrigo-selva',
+  },
+  {
+    lang: 'C# · .NET',
+    emoji: '🖥️',
+    title: 'Aplicación de Escritorio',
+    description: 'Aplicación de escritorio con WPF, acceso a base de datos y generación de reportes. Arquitectura en capas y patrón repositorio.',
+    tags: ['C#', '.NET', 'WPF', 'SQL Server'],
+    github: 'https://github.com/rodrigo-selva',
+  },
+];
+---
+
+<section id="proyectos">
+  <div class="section-label">// 04 — Proyectos</div>
+  <h2>Proyectos<br/>destacados</h2>
+  <div class="projects-grid">
+    {projects.map(p => (
+      <div class="project-card">
+        <div class="project-lang">{p.lang}</div>
+        <h3>{p.emoji} {p.title}</h3>
+        <p>{p.description}</p>
+        <div class="project-footer">
+          {p.tags.map(t => <span class="tag">{t}</span>)}
+          <a href={p.github} target="_blank" class="project-link">GitHub →</a>
+        </div>
+      </div>
+    ))}
+  </div>
+  <p class="projects-more">
+    → Más proyectos en <a href="https://github.com/rodrigo-selva" target="_blank">github.com/rodrigo-selva</a>
+  </p>
+</section>
+
+<style>
+  section {
+    padding: 6rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    letter-spacing: -0.03em;
+    margin-bottom: 3rem;
+    line-height: 1.1;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(0,229,255,0.05), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .project-card:hover {
+    border-color: rgba(0,229,255,0.2);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .project-card:hover::after { opacity: 1; }
+
+  .project-lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .project-lang::before {
+    content: '';
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .project-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.02em;
+  }
+
+  .project-card p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .project-footer {
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .tag {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 0.3rem 0.75rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text);
+  }
+
+  .project-link {
+    margin-left: auto;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .project-link:hover { text-decoration: underline; }
+
+  .projects-more {
+    margin-top: 2rem;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    text-align: center;
+  }
+
+  .projects-more a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .projects-more a:hover { text-decoration: underline; }
+
+  @media (max-width: 768px) {
+    section { padding: 4rem 1.5rem; }
+  }
+</style>

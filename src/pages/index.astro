@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Skills from '../components/Skills.astro';
+import Projects from '../components/Projects.astro';
+import Contact from '../components/Contact.astro';
+---
+
+<Layout>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <Nav />
+  <main>
+    <Hero />
+    <div class="section-divider"></div>
+    <About />
+    <div class="section-divider"></div>
+    <Skills />
+    <div class="section-divider"></div>
+    <Projects />
+    <div class="section-divider"></div>
+    <Contact />
+  </main>
+</Layout>
+
+<style>
+  .cursor-glow {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: all 0.15s ease;
+    z-index: 1;
+  }
+</style>
+
+<script>
+  // Cursor glow
+  const glow = document.getElementById('cursorGlow');
+  document.addEventListener('mousemove', (e) => {
+    if (glow) {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+    }
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.skill-category, .cert-card, .project-card, .stat-card').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = (section as HTMLElement).offsetTop - 100;
+      if (window.scrollY >= sectionTop) current = section.getAttribute('id') || '';
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+    });
+  });
+</script>

@@ -1,0 +1,155 @@
+---
+const categories = [
+  {
+    icon: '☕',
+    title: 'Lenguajes',
+    tags: ['Java', 'Kotlin', 'C#', 'Python', 'HTML', 'CSS', 'XML', 'SQL'],
+  },
+  {
+    icon: '📱',
+    title: 'Plataformas & Frameworks',
+    tags: ['Android', 'Android Studio', '.NET', 'Spring Boot', 'Hibernate', 'JDBC'],
+  },
+  {
+    icon: '🗄️',
+    title: 'Bases de datos',
+    tags: ['MySQL', 'PostgreSQL', 'SQLite', 'SQL Server', 'PL/SQL'],
+  },
+  {
+    icon: '☁️',
+    title: 'Cloud & DevOps',
+    tags: ['AWS', 'EC2', 'S3', 'Git', 'GitHub', 'Docker'],
+  },
+  {
+    icon: '🖥️',
+    title: 'Sistemas Operativos',
+    tags: ['Windows', 'macOS', 'Linux', 'Bash', 'PowerShell'],
+  },
+  {
+    icon: '🛠️',
+    title: 'Herramientas',
+    tags: ['IntelliJ IDEA', 'VS Code', 'Visual Studio', 'Postman', 'Figma'],
+  },
+];
+---
+
+<section id="skills">
+  <div class="section-label">// 02 — Stack técnico</div>
+  <h2>Herramientas &<br/>tecnologías</h2>
+  <div class="skills-grid">
+    {categories.map(cat => (
+      <div class="skill-category">
+        <div class="skill-cat-title">
+          <span class="skill-icon">{cat.icon}</span>
+          {cat.title}
+        </div>
+        <div class="skill-tags">
+          {cat.tags.map(tag => <span class="tag">{tag}</span>)}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  section {
+    padding: 6rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    letter-spacing: -0.03em;
+    margin-bottom: 3rem;
+    line-height: 1.1;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-category {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.8rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .skill-category.visible {
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .skill-category::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .skill-category:hover { border-color: rgba(0,229,255,0.2); transform: translateY(-4px); }
+  .skill-category:hover::before { opacity: 1; }
+
+  .skill-cat-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 0.3rem 0.75rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text);
+    transition: all 0.15s;
+    cursor: default;
+  }
+
+  .tag:hover {
+    background: rgba(0,229,255,0.08);
+    border-color: rgba(0,229,255,0.3);
+    color: var(--accent);
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    section { padding: 4rem 1.5rem; }
+  }
+</style>

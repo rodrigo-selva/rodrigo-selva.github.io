@@ -1,0 +1,128 @@
+---
+---
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label">// 05 — Contacto</div>
+    <h2>¿Hablamos?</h2>
+    <p>Estoy abierto a nuevas oportunidades, proyectos freelance o simplemente a conectar con otros desarrolladores.</p>
+    <div class="social-links">
+      <a href="mailto:rodrigo@email.com" class="btn btn-primary">✉️ rodrigo@email.com</a>
+      <a href="https://github.com/rodrigo-selva" target="_blank" class="btn btn-ghost">GitHub</a>
+      <a href="https://linkedin.com/in/rodrigo-selva" target="_blank" class="btn btn-ghost">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Diseñado & desarrollado por <span class="accent">Rodrigo Selva</span> · 2025 · Hecho con ❤️ y mucho café</p>
+</footer>
+
+<style>
+  section {
+    padding: 6rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .contact-inner {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-inner::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 10%; right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), var(--accent2), transparent);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  p {
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+    font-weight: 500;
+  }
+  .btn-primary:hover {
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(0,229,255,0.3);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  footer {
+    text-align: center;
+    padding: 2.5rem 4rem;
+    border-top: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .accent { color: var(--accent); }
+
+  @media (max-width: 768px) {
+    section { padding: 4rem 1.5rem; }
+    .contact-inner { padding: 2rem; }
+  }
+</style>
