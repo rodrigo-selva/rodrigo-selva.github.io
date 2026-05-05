@@ -3,18 +3,23 @@ const links = [
   { href: '#sobre-mi', label: 'Sobre mí' },
   { href: '#skills', label: 'Skills' },
   { href: '#proyectos', label: 'Proyectos' },
+  { href: '#inmaypunto', label: 'InmayPunto' },
   { href: '#contact', label: 'Contacto' },
 ];
 ---
 
-<nav>
+<nav id="mainNav">
   <div class="nav-logo">&lt;Rodrigo Selva Oltra /&gt;</div>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     {links.map(link => (
       <li><a href={link.href}>{link.label}</a></li>
     ))}
   </ul>
-  <button class="nav-menu-btn" id="menuBtn" aria-label="Menú">☰</button>
+  <button class="nav-menu-btn" id="menuBtn" aria-label="Menú" aria-expanded="false">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
 </nav>
 
 <style>
@@ -67,23 +72,86 @@ const links = [
     transition: width 0.2s;
   }
 
-  .nav-links a:hover { color: var(--accent); }
-  .nav-links a:hover::after { width: 100%; }
+  .nav-links a:hover,
+  .nav-links a.active { color: var(--accent); }
+  .nav-links a:hover::after,
+  .nav-links a.active::after { width: 100%; }
 
+  /* Hamburger */
   .nav-menu-btn {
     display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
     background: none;
     border: 1px solid var(--border);
-    color: var(--text);
-    padding: 0.4rem 0.7rem;
-    border-radius: 6px;
+    padding: 0.5rem 0.6rem;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1rem;
+    width: 40px;
+    height: 40px;
   }
 
+  .bar {
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background: var(--text);
+    transition: transform 0.3s, opacity 0.3s;
+    border-radius: 2px;
+  }
+
+  .nav-menu-btn.open .bar:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-menu-btn.open .bar:nth-child(2) { opacity: 0; }
+  .nav-menu-btn.open .bar:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
   @media (max-width: 768px) {
-    nav { padding: 1.2rem 1.5rem; }
-    .nav-links { display: none; }
-    .nav-menu-btn { display: block; }
+    nav {
+      padding: 1.2rem 1.5rem;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+
+    .nav-menu-btn { display: flex; }
+
+    .nav-links {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      gap: 0;
+      padding: 0.5rem 0 1rem;
+      order: 3;
+    }
+
+    .nav-links.open { display: flex; }
+
+    .nav-links li a {
+      display: block;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.82rem;
+    }
+
+    .nav-links li:last-child a { border-bottom: none; }
   }
 </style>
+
+<script>
+  const btn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = navLinks?.classList.toggle('open');
+    btn.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Cierra el menú al pulsar un enlace en móvil
+  navLinks?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      btn?.classList.remove('open');
+      btn?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

@@ -3,32 +3,38 @@ const categories = [
   {
     icon: '☕',
     title: 'Lenguajes',
+    accent: 'cyan',
     tags: ['Java', 'Kotlin', 'C#', 'HTML', 'CSS', 'XML', 'SQL'],
   },
   {
     icon: '📱',
     title: 'Plataformas & Frameworks',
-    tags: ['Android', 'Android Studio', '.NET', 'Astro', 'Spring Boot', 'Hibernate', 'JDBC'],
+    accent: 'violet',
+    tags: ['Android', '.NET 10', 'Blazor WASM', 'ASP.NET Core', 'Astro', 'Spring Boot', 'Hibernate', 'JDBC'],
   },
   {
     icon: '🗄️',
     title: 'Bases de datos',
-    tags: ['MySQL', 'PostgreSQL', 'SQLite', 'SQL Server', 'PL/SQL'],
+    accent: 'cyan',
+    tags: ['SQL Server', 'MySQL', 'PostgreSQL', 'SQLite', 'PL/SQL'],
   },
   {
     icon: '☁️',
     title: 'Cloud & DevOps',
+    accent: 'violet',
     tags: ['AWS', 'EC2', 'S3', 'Git', 'GitHub', 'Docker'],
   },
   {
     icon: '🖥️',
     title: 'Sistemas Operativos',
+    accent: 'cyan',
     tags: ['Windows', 'macOS', 'Linux', 'Bash', 'PowerShell'],
   },
   {
     icon: '🛠️',
     title: 'Herramientas',
-    tags: ['IntelliJ IDEA','Android Studio', 'Xcode', 'VS Code', 'Visual Studio', 'Postman', 'Figma'],
+    accent: 'violet',
+    tags: ['Visual Studio', 'VS Code', 'IntelliJ IDEA', 'Android Studio', 'Postman', 'Figma'],
   },
 ];
 ---
@@ -37,8 +43,8 @@ const categories = [
   <div class="section-label">// 02 — Stack técnico</div>
   <h2>Herramientas &<br/>tecnologías</h2>
   <div class="skills-grid">
-    {categories.map(cat => (
-      <div class="skill-category">
+    {categories.map((cat, i) => (
+      <div class={`skill-category accent-${cat.accent}`} style={`animation-delay: ${i * 0.08}s`}>
         <div class="skill-cat-title">
           <span class="skill-icon">{cat.icon}</span>
           {cat.title}
@@ -78,24 +84,24 @@ const categories = [
 
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
   }
 
   .skill-category {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 1.8rem;
-    transition: border-color 0.2s, transform 0.2s;
+    padding: 1.6rem;
     position: relative;
     overflow: hidden;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(24px);
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
   }
 
   .skill-category.visible {
-    animation: fadeUp 0.6s ease forwards;
+    animation: fadeUp 0.5s ease forwards;
   }
 
   .skill-category::before {
@@ -103,53 +109,80 @@ const categories = [
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: opacity 0.25s;
   }
 
-  .skill-category:hover { border-color: rgba(0,229,255,0.2); transform: translateY(-4px); }
+  .skill-category.accent-cyan::before {
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+  .skill-category.accent-violet::before {
+    background: linear-gradient(90deg, var(--accent2), transparent);
+  }
+
+  .skill-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+  }
+  .skill-category.accent-cyan:hover { border-color: rgba(0,229,255,0.25); }
+  .skill-category.accent-violet:hover { border-color: rgba(124,58,237,0.35); }
   .skill-category:hover::before { opacity: 1; }
 
   .skill-cat-title {
     font-family: 'Syne', sans-serif;
     font-weight: 700;
-    font-size: 0.95rem;
-    margin-bottom: 1.2rem;
+    font-size: 0.9rem;
+    margin-bottom: 1.1rem;
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.55rem;
+    letter-spacing: -0.01em;
+  }
+
+  .skill-icon {
+    font-size: 1.1rem;
+    line-height: 1;
   }
 
   .skill-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.45rem;
   }
 
   .tag {
     background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.07);
     border-radius: 6px;
-    padding: 0.3rem 0.75rem;
+    padding: 0.28rem 0.7rem;
     font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--text);
-    transition: all 0.15s;
+    font-size: 0.72rem;
+    color: var(--muted);
+    transition: all 0.18s;
     cursor: default;
   }
 
-  .tag:hover {
-    background: rgba(0,229,255,0.08);
+  .accent-cyan .tag:hover {
+    background: rgba(0,229,255,0.09);
     border-color: rgba(0,229,255,0.3);
     color: var(--accent);
+  }
+  .accent-violet .tag:hover {
+    background: rgba(124,58,237,0.12);
+    border-color: rgba(124,58,237,0.4);
+    color: #a78bfa;
   }
 
   @keyframes fadeUp {
     to { opacity: 1; transform: translateY(0); }
   }
 
+  @media (max-width: 1024px) {
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
   @media (max-width: 768px) {
     section { padding: 4rem 1.5rem; }
+    .skills-grid { grid-template-columns: 1fr; gap: 1rem; }
   }
 </style>
