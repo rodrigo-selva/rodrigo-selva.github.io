@@ -1,0 +1,263 @@
+---
+const jobs = [
+  {
+    period: 'Mar 2026 — Jun 2026',
+    role: 'Desarrollador de Aplicaciones',
+    company: 'Primafrio',
+    type: 'Prácticas DAM',
+    desc: 'Desarrollo de aplicaciones en el departamento técnico de una empresa líder en transporte frigorífico. Participación en proyectos reales de software dentro de un entorno profesional.',
+    tags: ['DAM', 'Desarrollo de software', 'Entorno empresarial'],
+    current: true,
+  },
+  {
+    period: 'Mar 2023 — Jun 2023',
+    role: 'Soporte Técnico',
+    company: 'Universidad de Murcia',
+    type: 'Prácticas SMR',
+    desc: 'Soporte técnico presencial a personal administrativo y docente. Resolución de incidencias de hardware, software y redes en el entorno universitario.',
+    tags: ['SMR', 'Hardware', 'Redes', 'Soporte técnico'],
+    current: false,
+  },
+];
+---
+
+<section id="experiencia">
+  <div class="section-label">// 02 — Experiencia</div>
+  <h2>Experiencia<br/>profesional</h2>
+
+  <div class="timeline">
+    {jobs.map((job, i) => (
+      <div class={`timeline-item ${job.current ? 'current' : ''}`}>
+        <div class="timeline-line">
+          <div class="timeline-dot"></div>
+          {i < jobs.length - 1 && <div class="timeline-connector"></div>}
+        </div>
+        <div class="timeline-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h3>{job.role}</h3>
+              <span class="company">{job.company}</span>
+            </div>
+            <div class="card-badges">
+              {job.current && <span class="badge-current">En curso</span>}
+              <span class="badge-type">{job.type}</span>
+              <span class="period">{job.period}</span>
+            </div>
+          </div>
+          <p>{job.desc}</p>
+          <div class="card-tags">
+            {job.tags.map(t => <span class="tag">{t}</span>)}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  section {
+    padding: 6rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    letter-spacing: -0.03em;
+    margin-bottom: 3rem;
+    line-height: 1.1;
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 1.5rem;
+  }
+
+  .timeline-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1.6rem;
+  }
+
+  .timeline-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--border);
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s;
+    z-index: 1;
+  }
+
+  .timeline-item.current .timeline-dot {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(0,229,255,0.4);
+  }
+
+  .timeline-connector {
+    flex: 1;
+    width: 1px;
+    background: var(--border);
+    margin: 6px 0;
+    min-height: 2rem;
+  }
+
+  .timeline-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.8rem;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+
+  .timeline-item.current .timeline-card {
+    border-color: rgba(0,229,255,0.18);
+  }
+
+  .timeline-card:hover {
+    border-color: rgba(0,229,255,0.25);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+    transform: translateX(4px);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .card-title-group h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.2rem;
+  }
+
+  .company {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+  }
+
+  .card-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  .badge-current {
+    background: rgba(0,229,255,0.1);
+    border: 1px solid rgba(0,229,255,0.3);
+    border-radius: 100px;
+    padding: 0.2rem 0.7rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .badge-current::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s ease infinite;
+  }
+
+  .badge-type {
+    background: rgba(124,58,237,0.1);
+    border: 1px solid rgba(124,58,237,0.25);
+    border-radius: 100px;
+    padding: 0.2rem 0.7rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: #a78bfa;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .period {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .timeline-card p {
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin-bottom: 1.2rem;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .tag {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 6px;
+    padding: 0.28rem 0.7rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    transition: all 0.18s;
+  }
+
+  .tag:hover {
+    background: rgba(0,229,255,0.08);
+    border-color: rgba(0,229,255,0.25);
+    color: var(--accent);
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  @media (max-width: 768px) {
+    section { padding: 4rem 1.5rem; }
+    .timeline-item { grid-template-columns: 24px 1fr; gap: 1rem; }
+    .card-header { flex-direction: column; gap: 0.75rem; }
+    .card-badges { flex-direction: row; }
+    .timeline-card { padding: 1.3rem; }
+  }
+</style>
