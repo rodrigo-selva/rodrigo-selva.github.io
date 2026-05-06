@@ -2,7 +2,7 @@
 ---
 
 <section id="inmaypunto">
-  <div class="section-label">// 06 — Proyecto freelance</div>
+  <div class="section-label">// 06 — Freelance</div>
   <h2>Tienda online para<br/><span class="accent">inmaypunto.com</span></h2>
 
   <div class="inmay-card">
@@ -12,6 +12,22 @@
         <span class="meta-badge">E-commerce</span>
         <span class="meta-badge violet">HTML & JS</span>
         <a href="https://inmaypunto.com" target="_blank" class="meta-link">inmaypunto.com ↗</a>
+      </div>
+
+      <div class="browser-mockup">
+        <div class="browser-bar">
+          <div class="browser-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="browser-url">inmaypunto.com</div>
+        </div>
+        <div class="browser-screen">
+          <img
+            src="https://api.microlink.io/?url=https://inmaypunto.com&screenshot=true&meta=false&embed=screenshot.url"
+            alt="Preview de inmaypunto.com"
+            loading="lazy"
+          />
+        </div>
       </div>
 
       <p class="inmay-desc">
@@ -150,6 +166,70 @@
     transition: opacity 0.2s;
   }
   .meta-link:hover { opacity: 0.7; }
+
+  /* Browser mockup */
+  .browser-mockup {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-bottom: 2rem;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  }
+
+  .browser-bar {
+    background: #1a1a27;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .browser-dots {
+    display: flex;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .browser-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+
+  .browser-dots span:nth-child(1) { background: #ff5f57; }
+  .browser-dots span:nth-child(2) { background: #febc2e; }
+  .browser-dots span:nth-child(3) { background: #28c840; }
+
+  .browser-url {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 6px;
+    padding: 0.25rem 0.75rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .browser-screen {
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: #0f0f18;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .browser-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
 
   .inmay-desc {
     color: var(--muted);

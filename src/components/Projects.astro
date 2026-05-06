@@ -4,9 +4,9 @@ const projects = [
     lang: 'C# · .NET 10 · Blazor',
     emoji: '🚛',
     title: 'MantenimientoCamiones',
-    description: 'Plataforma de gestión de mantenimiento para flotas de camiones. Permite a los técnicos registrar trabajos, controlar el estado de tareas pendientes y hacer seguimiento del tiempo trabajado por vehículo. Los administradores tienen acceso a un panel centralizado con todos los registros. Incluye autenticación JWT para técnicos y autenticación Windows (Negotiate) para administradores de dominio, filtrado por marca (Volvo, Mercedes-Benz, Scania) y tipo de equipo frío (Carrier, Termoking).',
+    description: 'Plataforma de gestión de mantenimiento para flotas de camiones y remolques. Permite a los técnicos registrar trabajos, controlar el estado de tareas pendientes y hacer seguimiento del tiempo trabajado por vehículo, tanto para cabezas tractoras (Volvo, Mercedes-Benz, Scania) como para remolques con equipo frío (Carrier, Termoking). Los administradores tienen acceso a un panel centralizado con todos los registros. Incluye autenticación JWT para técnicos y autenticación Windows (Negotiate) para administradores de dominio.',
     tags: ['C#', '.NET 10', 'Blazor WASM', 'ASP.NET Core', 'Dapper', 'SQL Server', 'JWT'],
-    github: 'https://github.com/rodrigo-selva',
+    github: null,
   },
   {
     lang: 'Kotlin · Android',
@@ -20,7 +20,7 @@ const projects = [
 ---
 
 <section id="proyectos">
-  <div class="section-label">// 04 — Proyectos</div>
+  <div class="section-label">// 05 — Proyectos</div>
   <h2>Proyectos<br/>destacados</h2>
   <div class="projects-grid">
     {projects.map(p => (
@@ -30,7 +30,7 @@ const projects = [
         <p>{p.description}</p>
         <div class="project-footer">
           {p.tags.map(t => <span class="tag">{t}</span>)}
-          <a href={p.github} target="_blank" class="project-link">GitHub →</a>
+          {p.github && <a href={p.github} target="_blank" class="project-link">GitHub →</a>}
         </div>
       </div>
     ))}
